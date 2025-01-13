@@ -1,19 +1,26 @@
+import { Link, NavLink } from "react-router-dom";
+import UseInfo from "../../../Hooks/useInfo";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 
 const Navbar = () => {
 
+    const [user] = UseInfo()
+    const { logOut } = useContext(AuthContext)
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     const navOptions = <>
-        <li><a>Item 1</a></li>
-        <li>
-            <details>
-                <summary>Parent</summary>
-                <ul className="p-2 lg:text-black">
-                    <li><a>Submenu 1</a></li>
-                    <li><a>Submenu 2</a></li>
-                </ul>
-            </details>
-        </li>
-        <li><a>Item 3</a></li>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
+        <li><NavLink to={'/order-food/salad'}>Order Food</NavLink></li>
+
     </>
 
     return (
@@ -41,7 +48,7 @@ const Navbar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">king Chef</a>
+                    <Link to={'/'} className="text-xl">king Chef</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal  px-1">
@@ -49,7 +56,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {user?.email ? <button className="btn btn-ghost text-lg" onClick={handleLogOut}>Logout</button> : <button className="btn btn-ghost text-lg"><NavLink to={'/login'}>Log In</NavLink></button>}
                 </div>
             </div>
         </div>

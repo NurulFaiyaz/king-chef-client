@@ -5,10 +5,14 @@ import chef from '../../../assets/home/chef-service.jpg'
 import PopularMenu from "../PopularMenu/PopularMenu";
 import Featured from "../Featured/Featured";
 import Testimonials from "../Testimonials/Testimonials";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     return (
         <div className="">
+            <Helmet>
+                <title>King Chef | Home</title>
+            </Helmet>
             <Banner></Banner>
             <div className=" w-11/12 md:max-w-5xl mx-auto">
                 <Category></Category>

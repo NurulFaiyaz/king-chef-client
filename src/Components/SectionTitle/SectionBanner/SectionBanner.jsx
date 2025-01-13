@@ -1,21 +1,28 @@
+import { Parallax} from 'react-parallax';
 
 
 const SectionBanner = ({ image, title, description }) => {
     return (
-        <div
-            className="hero border mb-10"
-            style={{
-                backgroundImage: `url(${image})`,
-            }}>
 
+        <Parallax
+            blur={{ min: -50, max: 50 }}
+            bgImage={image}
+            bgImageAlt="the dog"
+            strength={-200}
+            
+        >
+            <div className="hero min-h-[400px] lg:min-h-[500px]">
 
-            <div className="w-2/3 bg-white my-10 text-center space-y-4 p-10">
-                <h1 className="text-2xl">{title}</h1>
-                <p className="mb-5 text-xs">{description}
-                </p>
+                <div className="w-11/12 md:w-4/6 bg-black bg-opacity-40 my-20 text-center space-y-4 p-4 md:p-20 text-white">
+                    <h1 className="text-3xl uppercase">{title}</h1>
+                    <p className="mb-5 text-xs">{description}
+                    </p>
+                </div>
+
             </div>
+        </Parallax>
 
-        </div>
+
     );
 };
 
