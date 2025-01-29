@@ -1,23 +1,26 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginBanner from '../../../assets/others/authentication1.png'
 import { FcGoogle } from 'react-icons/fc';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
-
+    const location = useLocation()
     const navigate = useNavigate()
+    const from = location.state?.from?.pathname || '/'
 
-    const { signIn } = useContext(AuthContext)
+    const { signIn, googleSignIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = (data) => {
         console.log(data)
         signIn(data.email, data.password)
             .then(result => {
-                navigate('/')
+                toast.success('Login Successfully')
+                navigate(from, { replace: true })
             })
             .catch(err => {
                 console.log(err)
@@ -25,13 +28,29 @@ const Login = () => {
 
     }
 
-    return (
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result)
+                toast.success('Login Successfully')
+                navigate(from, { replace: true })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
+
+    return (
         <>
             <Helmet>
                 <title>King Chef | Sign In</title>
             </Helmet>
             <div className="max-w-7xl mx-auto border min-h-[100vh] flex">
+                <Toaster
+                    position="top-right"
+                    reverseOrder={true}
+                />
                 <div className='flex flex-col md:flex-row items-center justify-evenly'>
                     {/* login banner */}
                     <div className='w-5/6 md:w-1/2 border'>
@@ -73,7 +92,7 @@ const Login = () => {
                         <div className='text-center space-y-2 mb-10'>
                             <p>New here? <Link to={'/register'}>Create a New Account</Link></p>
                             <p>Or sign in with</p>
-                            <button className='btn w-2/3 text-xl rounded-none'><FcGoogle />Google</button>
+                            <button onClick={handleGoogleSignIn} className='btn w-2/3 text-xl rounded-none'><FcGoogle />Google</button>
                         </div>
                     </div>
                 </div>

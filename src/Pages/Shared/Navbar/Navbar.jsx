@@ -2,12 +2,16 @@ import { Link, NavLink } from "react-router-dom";
 import UseInfo from "../../../Hooks/useInfo";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../Hooks/useCart";
 
 
 const Navbar = () => {
-
-    const [user] = UseInfo()
+    const [cart] = useCart()
+    const { user } = UseInfo()
     const { logOut } = useContext(AuthContext)
+
+    console.log(cart)
     const handleLogOut = () => {
         logOut()
             .then(() => { })
@@ -18,6 +22,8 @@ const Navbar = () => {
 
     const navOptions = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/contact-us'}>Contact Us</NavLink></li>
+        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
         <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/order-food/salad'}>Order Food</NavLink></li>
 
@@ -50,12 +56,17 @@ const Navbar = () => {
                     </div>
                     <Link to={'/'} className="text-xl">king Chef</Link>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal  px-1">
-                        {navOptions}
-                    </ul>
-                </div>
+              
                 <div className="navbar-end">
+                    <div className=" hidden lg:flex mr-5">
+                        <ul className="menu menu-horizontal  px-1">
+                            {navOptions}
+                        </ul>
+                    </div>
+                    <button className="flex items-center gap-1 text-lg btn btn-sm">
+                        <FaShoppingCart />
+                        <div className="badge badge-secondary">+{cart.length}</div>
+                    </button>
                     {user?.email ? <button className="btn btn-ghost text-lg" onClick={handleLogOut}>Logout</button> : <button className="btn btn-ghost text-lg"><NavLink to={'/login'}>Log In</NavLink></button>}
                 </div>
             </div>
