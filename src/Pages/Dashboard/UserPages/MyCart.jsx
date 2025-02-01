@@ -3,6 +3,7 @@ import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import useCart from "../../../Hooks/useCart";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
     const axiosSecure = useAxiosSecure()
@@ -19,7 +20,7 @@ const MyCart = () => {
             }
             )
     }
-    
+
     return (
         <div>
             <Helmet>
@@ -31,7 +32,7 @@ const MyCart = () => {
                 <div className="flex justify-between mb-5 font-semibold items-center">
                     <h4>TOTAL ORDERS: {cart.length}</h4>
                     <h4>TOTAL PRICE: ${totalPrice}</h4>
-                    <button className="btn btn-sm font-medium bg-[#d1a054]">PAY</button>
+                    {cart.length > 0 ? <Link state={totalPrice} to='/dashboard/payment'><button className="btn btn-sm font-medium bg-[#d1a054]">PAY</button></Link> : <button disabled className="btn btn-sm font-medium bg-[#d1a054]">PAY</button>}
                 </div>
 
                 <div className="overflow-x-auto rounded-xl">

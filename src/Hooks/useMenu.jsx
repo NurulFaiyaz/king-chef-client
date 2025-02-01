@@ -13,6 +13,7 @@ const useMenu = () => {
                 setLoading(false)
             })
     }, [])
+    console.log(menus)
     return [menus, loading]
 };
 

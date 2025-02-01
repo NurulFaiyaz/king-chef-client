@@ -56,17 +56,19 @@ const Navbar = () => {
                     </div>
                     <Link to={'/'} className="text-xl">king Chef</Link>
                 </div>
-              
+
                 <div className="navbar-end">
                     <div className=" hidden lg:flex mr-5">
                         <ul className="menu menu-horizontal  px-1">
                             {navOptions}
                         </ul>
                     </div>
-                    <button className="flex items-center gap-1 text-lg btn btn-sm">
-                        <FaShoppingCart />
-                        <div className="badge badge-secondary">+{cart.length}</div>
-                    </button>
+                    <Link to='dashboard/my-cart'>
+                        <button className="flex items-center gap-1 text-lg btn btn-sm">
+                            <FaShoppingCart />
+                            <div className="badge badge-secondary">+{cart.length}</div>
+                        </button>
+                    </Link>
                     {user?.email ? <button className="btn btn-ghost text-lg" onClick={handleLogOut}>Logout</button> : <button className="btn btn-ghost text-lg"><NavLink to={'/login'}>Log In</NavLink></button>}
                 </div>
             </div>
