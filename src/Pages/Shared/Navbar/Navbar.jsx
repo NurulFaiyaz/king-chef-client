@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import UseInfo from "../../../Hooks/useInfo";
+import UseInfo from "../../../Hooks/UseInfo";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
@@ -11,7 +11,6 @@ const Navbar = () => {
     const { user } = UseInfo()
     const { logOut } = useContext(AuthContext)
 
-    console.log(cart)
     const handleLogOut = () => {
         logOut()
             .then(() => { })

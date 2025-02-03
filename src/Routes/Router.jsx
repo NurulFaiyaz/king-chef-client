@@ -16,6 +16,7 @@ import MyCart from "../Pages/Dashboard/UserPages/MyCart";
 import Order from "../Pages/Dashboard/UserPages/Order";
 import PaymentHistory from "../Pages/Dashboard/UserPages/PaymentHistory";
 import Payment from "../Pages/Dashboard/UserPages/Payment";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'order',
-                element: <Order></Order>
+                element: <AdminRoute><Order></Order></AdminRoute>
             },
             {
                 path: 'payment-history',

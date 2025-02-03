@@ -1,18 +1,18 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import loginBanner from '../../../assets/others/authentication1.png'
-import { FcGoogle } from 'react-icons/fc';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import toast, { Toaster } from 'react-hot-toast';
+import GoogleAuthentication from '../SocialAuthentication/GoogleAuthentication';
 
 const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const from = location.state?.from?.pathname || '/'
 
-    const { signIn, googleSignIn } = useContext(AuthContext)
+    const { signIn } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const onSubmit = (data) => {
@@ -25,22 +25,7 @@ const Login = () => {
             .catch(err => {
                 console.log(err)
             })
-
     }
-
-    const handleGoogleSignIn = () => {
-        googleSignIn()
-            .then(result => {
-                console.log(result)
-                toast.success('Login Successfully')
-                navigate(from, { replace: true })
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
-
     return (
         <>
             <Helmet>
@@ -89,11 +74,7 @@ const Login = () => {
                             </form>
 
                         </div>
-                        <div className='text-center space-y-2 mb-10'>
-                            <p>New here? <Link to={'/register'}>Create a New Account</Link></p>
-                            <p>Or sign in with</p>
-                            <button onClick={handleGoogleSignIn} className='btn w-2/3 text-xl rounded-none'><FcGoogle />Google</button>
-                        </div>
+                        <GoogleAuthentication query="New here" suggestion="Create a new account" text2="Or Sign In with" link="register"></GoogleAuthentication>
                     </div>
                 </div>
             </div>

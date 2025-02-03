@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import UseInfo from "../../../Hooks/useInfo";
+import UseInfo from "../../../Hooks/UseInfo";
 import toast, { Toaster } from "react-hot-toast";
 import useCart from "../../../Hooks/useCart";
 

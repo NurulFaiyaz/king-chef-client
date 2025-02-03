@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import GoogleAuthentication from '../SocialAuthentication/GoogleAuthentication';
 
 const Register = () => {
     const navigate = useNavigate()
@@ -85,11 +86,7 @@ const Register = () => {
                             </form>
 
                         </div>
-                        <div className='text-center space-y-2 mb-10'>
-                            <p>Already have an account? <Link to={'/login'}>Sign In</Link></p>
-                            <p>Or sign in with</p>
-                            <button className='btn w-2/3 text-xl rounded-none'><FcGoogle />Google</button>
-                        </div>
+                        <GoogleAuthentication query="Already have an account" suggestion="Sign In" link="login" text2="Or Sign Up with Google"></GoogleAuthentication>
                     </div>
                 </div>
             </div>

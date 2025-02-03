@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import UseInfo from "../../../Hooks/useInfo";
+import UseInfo from "../../../Hooks/UseInfo";
 import { useQuery } from "@tanstack/react-query";
 
 

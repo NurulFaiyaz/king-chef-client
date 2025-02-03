@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import UseInfo from "../../Hooks/useInfo";
+import UseInfo from "../../Hooks/UseInfo";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
