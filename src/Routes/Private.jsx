@@ -6,11 +6,24 @@ const Private = ({ children }) => {
     const location = useLocation()
     const { user, loading } = UseInfo()
 
-    if (user?.email) return children;
 
-    if (loading) return "Loading Page"
+    console.log("loading from private page", "userLoading ->", user, loading)
 
-    return <Navigate to={"/login"} state={{ from: location }} replace></Navigate>
+    if (user) {
+        return children;
+    }
+
+    if (loading) {
+        return "Loading form private page"
+    }
+
+    if (!user && !user?.email) {
+        return <Navigate to={"/login"} state={{ from: location }} replace></Navigate>
+    }
+
+
+
+
 };
 
 export default Private;

@@ -14,7 +14,7 @@ const Home = () => {
                 <title>King Chef | Home</title>
             </Helmet>
             <Banner></Banner>
-            <div className=" w-11/12 md:max-w-5xl mx-auto">
+            <div className="w-11/12 md:max-w-7xl mx-auto">
                 <Category></Category>
                 <SectionBanner
                     image={chef}

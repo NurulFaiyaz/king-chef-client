@@ -17,6 +17,10 @@ import Order from "../Pages/Dashboard/UserPages/Order";
 import PaymentHistory from "../Pages/Dashboard/UserPages/PaymentHistory";
 import Payment from "../Pages/Dashboard/UserPages/Payment";
 import AdminRoute from "./AdminRoute";
+import AdminHome from "../Pages/Dashboard/AdminPages/AdminHome";
+import AddFood from "../Pages/Dashboard/AdminPages/AddFood";
+import ManageFood from "../Pages/Dashboard/AdminPages/ManageFood";
+import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers";
 
 
 const router = createBrowserRouter([
@@ -60,7 +64,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'order',
-                element: <AdminRoute><Order></Order></AdminRoute>
+                element: <Order></Order>
             },
             {
                 path: 'payment-history',
@@ -69,6 +73,22 @@ const router = createBrowserRouter([
             {
                 path: 'payment',
                 element: <Payment></Payment>
+            },
+            {
+                path: 'admin-home',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
+            {
+                path: 'add-food',
+                element: <AdminRoute><AddFood></AddFood></AdminRoute>
+            },
+            {
+                path: 'manage-food',
+                element: <AdminRoute><ManageFood></ManageFood></AdminRoute>
+            },
+            {
+                path: 'all-users',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             }
         ]
     },

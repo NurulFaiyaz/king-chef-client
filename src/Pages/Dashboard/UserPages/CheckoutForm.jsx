@@ -69,9 +69,10 @@ const CheckoutForm = () => {
                 }
             }
         })
+
         if (confirmError) {
             console.log("confirmError")
-            setError(confirmError)
+            setError(confirmError?.message)
         } else {
             console.log("Payment intent", paymentIntent)
         }
@@ -79,7 +80,6 @@ const CheckoutForm = () => {
         if (paymentIntent.status === "succeeded")
             // console.log(paymentIntent.id)
             setTransactionId(paymentIntent.id)
-
 
         // Save Payment data
         const paymentData = {

@@ -1,6 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import loginBanner from '../../../assets/others/authentication1.png'
-import { FcGoogle } from 'react-icons/fc';
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import { useContext } from 'react';
@@ -28,15 +27,15 @@ const Register = () => {
             <Helmet>
                 <title>King Chef | Register</title>
             </Helmet>
-            <div className="max-w-7xl mx-auto border min-h-[100vh] flex">
+            <div className="max-w-7xl mx-auto  min-h-[100vh] flex">
                 <div className='flex md:flex-row-reverse flex-col items-center justify-evenly'>
                     {/* register banner */}
-                    <div className='w-5/6 md:w-1/2 border'>
+                    <div className='w-5/6 md:w-1/2 '>
                         <img className='lg:w-5/6 mx-auto' src={loginBanner} alt="" />
                     </div>
 
                     {/* register form */}
-                    <div className='w-4/6 md:w-1/2 border'>
+                    <div className='w-4/6 md:w-1/2 '>
 
                         <div className="card bg-base-100 lg:w-4/6 mx-auto shrink-0 ">
                             <form onSubmit={handleSubmit(onSubmit)} className="card-body">

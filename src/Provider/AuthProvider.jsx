@@ -41,24 +41,28 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, async currentUser => {
-            setUser(currentUser)
-            console.log("Current User", currentUser)
-            if (currentUser)
-                await axiosSecure.post(`/users/${currentUser?.email}`, {
-                    name: currentUser?.displayName,
-                    email: currentUser?.email,
-                    image: currentUser?.photoURL,
-                    verified: currentUser?.reloadUserInfo?.emailVerified,
-                    timeStamp: currentUser?.metadata?.createdAt
-                })
-            setLoading(false)
+        const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            setUser(currentUser);
+            console.log("Current User:", currentUser);
 
-        })
-        return () => {
-            return unSubscribe()
-        }
-    }, [axiosSecure])
+            if (currentUser) {
+                try {
+                    await axiosSecure.post(`/users/${currentUser?.email}`, {
+                        name: currentUser?.displayName,
+                        email: currentUser?.email,
+                        image: currentUser?.photoURL,
+                        verified: currentUser?.reloadUserInfo?.emailVerified,
+                        timeStamp: currentUser?.metadata?.createdAt,
+                    })
+                } catch (error) {
+                    console.log(error.message)
+                }
+            }
+            setLoading(false); // ✅ Set loading to false AFTER Firebase auth state check
+        });
+
+        return () => unSubscribe();
+    }, [axiosSecure]);
 
     const authInfo = {
         user,

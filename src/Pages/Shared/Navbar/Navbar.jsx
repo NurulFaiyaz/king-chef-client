@@ -4,12 +4,20 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../Hooks/useCart";
-
+import UseUser from "../../../Hooks/UseUser";
+import './Navbar.css'
 
 const Navbar = () => {
     const [cart] = useCart()
     const { user } = UseInfo()
     const { logOut } = useContext(AuthContext)
+    const [userInfo] = UseUser()
+
+    // console.log("Navbar Loading States -> UseInfo:", "UseUser:", isLoading);
+    // console.log("User Info:", userInfo);
+
+
+    console.log(userInfo)
 
     const handleLogOut = () => {
         logOut()
@@ -19,18 +27,20 @@ const Navbar = () => {
             })
     }
 
+
+
     const navOptions = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/contact-us'}>Contact Us</NavLink></li>
-        <li><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+        <li><NavLink to={userInfo?.role === "admin" ? '/dashboard/admin-home' : '/dashboard'}>Dashboard</NavLink></li>
         <li><NavLink to={'/menu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/order-food/salad'}>Order Food</NavLink></li>
-
     </>
+
 
     return (
         <div>
-            <div className="navbar fixed z-10 bg-opacity-30 text-white bg-black">
+            <div className="navbar fixed z-10 bg-opacity-30 bg-black lg:px-12 text-white ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,12 +63,12 @@ const Navbar = () => {
                             {navOptions}
                         </ul>
                     </div>
-                    <Link to={'/'} className="text-xl">king Chef</Link>
+                    <Link to={'/'} className="text-xl uppercase">king Chef <br /> <span className="text-xs line-clamp-1 tracking-[.25em] text-center uppercase">Restaurant</span></Link>
                 </div>
 
-                <div className="navbar-end">
-                    <div className=" hidden lg:flex mr-5">
-                        <ul className="menu menu-horizontal  px-1">
+                <div className="navbar-end gap-4">
+                    <div className=" hidden lg:flex">
+                        <ul id="menu" className="  menu-horizontal gap-4 px-1">
                             {navOptions}
                         </ul>
                     </div>
@@ -68,7 +78,11 @@ const Navbar = () => {
                             <div className="badge badge-secondary">+{cart.length}</div>
                         </button>
                     </Link>
-                    {user?.email ? <button className="btn btn-ghost text-lg" onClick={handleLogOut}>Logout</button> : <button className="btn btn-ghost text-lg"><NavLink to={'/login'}>Log In</NavLink></button>}
+                    {user?.email ?
+                        <button className=" rounded-none text-lg" onClick={handleLogOut}>LOGOUT</button> :
+                        <button className=" rounded-none text-lg">
+                            <NavLink to={'/login'}>LOGIN</NavLink>
+                        </button>}
                 </div>
             </div>
         </div>

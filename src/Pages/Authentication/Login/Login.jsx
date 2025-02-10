@@ -31,21 +31,23 @@ const Login = () => {
             <Helmet>
                 <title>King Chef | Sign In</title>
             </Helmet>
-            <div className="max-w-7xl mx-auto border min-h-[100vh] flex">
+            <div className="max-w-7xl mx-auto  min-h-[100vh] flex">
                 <Toaster
                     position="top-right"
                     reverseOrder={true}
                 />
+
                 <div className='flex flex-col md:flex-row items-center justify-evenly'>
                     {/* login banner */}
-                    <div className='w-5/6 md:w-1/2 border'>
+
+                    <div className='w-5/6 md:w-1/2 '>
                         <img className='lg:w-5/6 mx-auto' src={loginBanner} alt="" />
                     </div>
 
                     {/* login form */}
-                    <div className='w-4/6 md:w-1/2 border'>
+                    <div className='w-4/6 md:w-1/2 '>
 
-                        <div className="card bg-base-100 md:w-4/6 mx-auto shrink-0 ">
+                        <div className="card bg-base-100 lg:w-4/6 mx-auto shrink-0 ">
                             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                                 <div className="form-control">
                                     <label className="label">

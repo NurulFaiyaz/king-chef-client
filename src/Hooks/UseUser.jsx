@@ -6,14 +6,16 @@ const UseUser = () => {
 
     const axiosSecure = useAxiosSecure()
     const { user } = UseInfo()
+
+
     const { data: userInfo = [], isLoading } = useQuery({
-        queryKey: ["user-Info"],
+        queryKey: ["user-Info", user?.email],
         queryFn: async () => {
-            const res = await axiosSecure(`/users/${user?.email}`)
+            const res = await axiosSecure(`/users/${user.email}`)
             return res.data
         }
     })
-    console.log(userInfo)
+
 
     return [userInfo, isLoading]
 };
